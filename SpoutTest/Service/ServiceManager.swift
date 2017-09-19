@@ -10,23 +10,45 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-enum DataResult {
+enum JsonResult {
     case success([VideoModel])
     case failure(String)
 }
+
+enum DataResult {
+    case success(Data)
+    case failure(String)
+}
+
+let kSavedVideos = "SavedVideosKey"
 
 class ServiceManager {
 
     static let shared = ServiceManager()
     private init() { }
     
-    func getData(from url: String, callback: @escaping ((DataResult)->Void)) {
+    func getData(from url: String, callback: @escaping ((JsonResult)->Void)) {
         Alamofire.request(url).responseJSON { (response) in
-            callback(self.handleDataResponse(response))
+            callback(self.handleJsonDataResponse(response))
         }
     }
     
-    private func handleDataResponse(_ response: DataResponse<Any>) -> DataResult {
+    func downloadVideo(from url: String,
+                       downloadingProgress: ((Progress)->Void)? = nil,
+                       completion: @escaping ((DataResult)->Void)) -> DataRequest {
+        let request = Alamofire.request(url)
+        request.downloadProgress { (progress) in
+            downloadingProgress?(progress)
+        }
+        
+        request.responseData { (responseData) in
+            completion(self.handleDataResponse(responseData))
+        }
+
+        return request
+    }
+    
+    private func handleJsonDataResponse(_ response: DataResponse<Any>) -> JsonResult {
         guard let data = response.result.value,
             let jsonArray = JSON(data).array else {
             return .failure("Cannot load data")
@@ -38,5 +60,12 @@ class ServiceManager {
         }
         
         return .success(arrayModel)
+    }
+    
+    private func handleDataResponse(_ response: DataResponse<Data>) -> DataResult {
+        guard let data = response.result.value else {
+                return .failure("Cannot download video")
+        }
+        return .success(data)
     }
 }

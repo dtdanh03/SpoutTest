@@ -15,6 +15,8 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.11):
     - PINCache (= 3.0.1-beta.5)
     - PINRemoteImage/Core
+  - Popover (1.0.6)
+  - SnapKit (3.2.0)
   - SwiftyJSON (3.1.4)
   - Texture (2.3.4):
     - Texture/PINRemoteImage (= 2.3.4)
@@ -26,6 +28,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Popover
+  - SnapKit
   - SwiftyJSON
   - Texture
 
@@ -34,9 +38,11 @@ SPEC CHECKSUMS:
   PINCache: 98e7b1ef782824ad231ade51987c218b758c30d8
   PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
   PINRemoteImage: d71988f11914a050d6d4cf51efc4ad1de8c0a9d8
+  Popover: 227aa929a6cdf41c4828786be8ede109c40344c9
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Texture: 8cf0872fe33328c20d7e6c1fcbf1f23a82162f2f
 
-PODFILE CHECKSUM: 323a6753d138fdb4f08e1a3306cde710b11133d8
+PODFILE CHECKSUM: 262b0e68adde290c231ca667913a0688b294fb96
 
 COCOAPODS: 1.2.1

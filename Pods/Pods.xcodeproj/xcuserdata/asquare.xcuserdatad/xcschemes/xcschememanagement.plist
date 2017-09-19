@@ -29,6 +29,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Popover.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SnapKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,12 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>102C9753289F3EF37DD08A1A4F9DABB6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>28E558A739BBFC5A1065854519EFA7DF</key>
+		<key>3807AFB2E8E642091D5DA5202E6ECCC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,17 +67,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7193DD88281778FCE0A08958A24FDA17</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7D670B32F7AF2F269DF9FEB3A1B0C427</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87B7F4C707FEC6D4A2ED0FCAB178FDE3</key>
+		<key>888F6A36DC97AB1D422F51CF36C699F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ABD83CF6210DC223C14DC8EFD466CA3B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B5644969BC7137B61AE2E1BDFF961DFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

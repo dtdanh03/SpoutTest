@@ -9,4 +9,6 @@ target 'SpoutTest' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'Texture'
+pod 'SnapKit'
+pod 'Popover'
 end

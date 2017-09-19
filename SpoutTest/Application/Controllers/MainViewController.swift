@@ -9,6 +9,7 @@
 import UIKit
 import AsyncDisplayKit
 import AVKit
+import Popover
 
 class MainViewController: ASViewController<ASCollectionNode> {
     
@@ -50,6 +51,114 @@ class MainViewController: ASViewController<ASCollectionNode> {
         }
     }
     
+    func showOptionsAction(at index: Int) {
+        let actionSheet = UIAlertController(title: "Choose actions", message: "", preferredStyle: .actionSheet)
+        
+        let streamAction = UIAlertAction(title: "Live Stream", style: .default) { [weak self] (action) in
+            self?.liveStreamVideo(at: index)
+        }
+        let downloadAction = UIAlertAction(title: "Download video", style: .default) { [weak self] (action) in
+            self?.downloadVideo(at: index)
+        }
+        let playVideoOfflineAction = UIAlertAction(title: "Play video offline", style: .default) { [weak self] (action) in
+            self?.playVideoOffline(at: index)
+        }
+        let deleteAction = UIAlertAction(title: "Delete offline video", style: .destructive) { [weak self] (action) in
+            self?.deleteOfflineVideo(at: index)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(streamAction)
+        if isVideoSaved(at: index) {
+            actionSheet.addAction(playVideoOfflineAction)
+            actionSheet.addAction(deleteAction)
+        } else {
+            actionSheet.addAction(downloadAction)
+        }
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    func liveStreamVideo(at index: Int) {
+        let video = videos[index]
+        guard let stringUrl = video.streamUrl,
+            let streamUrl = URL(string: stringUrl) else {
+            return
+        }
+        playVideo(with: streamUrl)
+    }
+
+    
+    func playVideo(with url: URL) {
+        let player = AVPlayer(url: url)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        present(playerViewController, animated: true) {
+            playerViewController.player?.play()
+        }
+    }
+    
+    func downloadVideo(at index: Int) {
+        let video = videos[index]
+        let popover = Popover()
+        popover.dismissOnBlackOverlayTap = false
+        popover.arrowSize = CGSize.zero
+        popover.cornerRadius = 10
+        popover.blackOverlayColor = UIColor.black.withAlphaComponent(0.8)
+        
+        let rect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width*3/4, height: 150)
+        let downloadView = DownloadView(frame: rect, model: video)
+        downloadView.popover = popover
+        popover.showAsDialog(downloadView)
+        downloadView.startDownloadingVideo()
+    }
+    
+    func isVideoSaved(at index: Int) -> Bool {
+        let video = videos[index]
+        guard let id = video.id,
+        let savedVideos = UserDefaults.standard.object(forKey: kSavedVideos) as? [Int] else {
+            return false
+        }
+        return savedVideos.contains(id)
+    }
+    
+    func playVideoOffline(at index: Int) {
+        guard let localFileURL = getLocalFileURL(at: index) else {
+            return
+        }
+        playVideo(with: localFileURL)
+    }
+    
+    func deleteOfflineVideo(at index: Int) {
+        guard let localFileURL = getLocalFileURL(at: index) else { return }
+        guard let _ = try? FileManager.default.removeItem(at: localFileURL) else { return }
+        guard var savedVideos =  UserDefaults.standard.object(forKey: kSavedVideos) as? [Int],
+            let id = videos[index].id,
+            let positionToRemove = savedVideos.index(of: id) else {
+                return
+        }
+        savedVideos.remove(at: positionToRemove)
+        UserDefaults.standard.set(savedVideos, forKey: kSavedVideos)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func getLocalFileURL(at index: Int) -> URL? {
+        let video = videos[index]
+        guard let id = video.id else {
+            return nil
+        }
+        
+        let fileURL = try? FileManager.default.url(for: .documentDirectory,
+                                                   in: .userDomainMask,
+                                                   appropriateFor: nil,
+                                                   create: false).appendingPathComponent("\(id).mp4")
+        guard let localFileURL = fileURL else {
+            return nil
+        }
+        print(localFileURL)
+        return localFileURL
+    }
 }
 
 
@@ -74,19 +183,6 @@ extension MainViewController: ASCollectionDataSource {
 //MARK: - CollectionDelegate
 extension MainViewController: ASCollectionDelegate {
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        let video = videos[indexPath.item]
-        guard let streamUrlString = video.streamUrl,
-            let offlineUrlString = video.offlineUrl,
-            let streamUrl = URL(string: streamUrlString),
-            let offlineUrl = URL(string: offlineUrlString) else {
-                return
-        }
-
-        let player = AVPlayer(url: streamUrl)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        present(playerViewController, animated: true) {
-            playerViewController.player!.play()
-        }
+        showOptionsAction(at: indexPath.item)
     }
 }
