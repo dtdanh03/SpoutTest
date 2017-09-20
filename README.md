@@ -1,5 +1,5 @@
 # SpoutTest
-- This project already has neccessary frameworks and dependencies to build, if you want to re-install dependencies, followings these steps:
+- This project already has neccessary frameworks and dependencies to build, if you want to re-install dependencies, following these steps:
     * Install cocoa pods
     * In terminal window, `cd` to the project's directory
     * Run command `pod install`
