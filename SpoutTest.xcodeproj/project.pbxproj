@@ -17,6 +17,7 @@
 		2B25F57A1F702CE300ABB1F7 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25F5791F702CE300ABB1F7 /* Extension.swift */; };
 		2B25F57C1F702FF600ABB1F7 /* VideosCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25F57B1F702FF600ABB1F7 /* VideosCellNode.swift */; };
 		2B25F57E1F70331E00ABB1F7 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25F57D1F70331E00ABB1F7 /* BaseNavigationController.swift */; };
+		2B34C3F91F72124B0092FD31 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2B34C3F81F72124B0092FD31 /* README.md */; };
 		2BFDA0BB1F71004C0077FB14 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFDA0BA1F71004C0077FB14 /* DownloadView.swift */; };
 		9080947152F79559540C4987 /* Pods_SpoutTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8449ED915E302ABB4A236516 /* Pods_SpoutTest.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		2B25F5791F702CE300ABB1F7 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		2B25F57B1F702FF600ABB1F7 /* VideosCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosCellNode.swift; sourceTree = "<group>"; };
 		2B25F57D1F70331E00ABB1F7 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		2B34C3F81F72124B0092FD31 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2BFDA0BA1F71004C0077FB14 /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		61E082CF46287065ECEC3E7A /* Pods-SpoutTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpoutTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpoutTest/Pods-SpoutTest.release.xcconfig"; sourceTree = "<group>"; };
 		8449ED915E302ABB4A236516 /* Pods_SpoutTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpoutTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +57,7 @@
 		2B25F54E1F70161F00ABB1F7 = {
 			isa = PBXGroup;
 			children = (
+				2B34C3F81F72124B0092FD31 /* README.md */,
 				2B25F5591F70161F00ABB1F7 /* SpoutTest */,
 				2B25F5581F70161F00ABB1F7 /* Products */,
 				DAA39BA52EA091CC9FEB74F5 /* Pods */,
@@ -292,6 +295,7 @@
 				2B25F55B1F70162100ABB1F7 /* AppDelegate.swift in Sources */,
 				2B25F5731F70270300ABB1F7 /* MainViewController.swift in Sources */,
 				2B25F5751F70275100ABB1F7 /* ServiceManager.swift in Sources */,
+				2B34C3F91F72124B0092FD31 /* README.md in Sources */,
 				2B25F5771F7027CF00ABB1F7 /* VideoModel.swift in Sources */,
 				2B25F57C1F702FF600ABB1F7 /* VideosCellNode.swift in Sources */,
 			);
